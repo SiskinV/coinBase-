@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "Vlada123",
+    "database": "coinBase",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": "Vlada123",
+    "database": "coinBase",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": "Vlada123",
+    "database": "coinBase",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
