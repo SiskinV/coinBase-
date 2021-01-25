@@ -2,17 +2,14 @@ const express = require("express");
 const dotenv = require("dotenv");
 const errorHandler = require("./middlewares/error");
 const morgan = require("morgan");
-const sequelize = require("./config/db");
 const cors = require("cors");
-var CronJob = require('cron').CronJob;
+const job = require("./utils/cron");
 
 //Load env vars
 dotenv.config({ path: "./config/config.env" });
 
 //Route files
 const coins = require("./routes/coin-routes");
-
-const job = require("./cron");
 
 const app = express();
 
@@ -26,17 +23,8 @@ if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
 }
 
-app.use(async (req, res, next) => {
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-        next();
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
-});
-
 app.use("/api/v1/coins", coins);
+
 
 job.start();
 

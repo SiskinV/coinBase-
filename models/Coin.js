@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequilize = require("../config/db.js");
+const sequelize = require("../config/db.js");
 
-const Coin = sequilize.define('Coin', {
+const Coin = sequelize.define('Coin', {
     id: {
         type: DataTypes.STRING,
         allowNull: false,
