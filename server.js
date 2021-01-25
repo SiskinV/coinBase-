@@ -11,6 +11,7 @@ dotenv.config({ path: "./config/config.env" });
 
 //Route files
 const coins = require("./routes/coin-routes");
+
 const job = require("./cron");
 
 const app = express();

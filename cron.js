@@ -9,10 +9,9 @@ var job = new CronJob('0 0 * * * *', () => {
     //getData(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`, process.env.API_GECKO);
 }, null, true, 'America/Los_Angeles');
 
-const asyncFunction = async (myMap, cryData, num) => {
+const createMap = (myMap, cryData, num) => {
     try {
-
-        const unresolvedPromise = cryData.map(currency => {
+        cryData.map(currency => {
             if (num == 1) {
                 myMap.set(currency.id, {
                     name: currency.name,
@@ -26,9 +25,7 @@ const asyncFunction = async (myMap, cryData, num) => {
                 })
             }
         })
-        const results = await Promise.all(unresolvedPromise)
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err)
     }
 }
@@ -43,10 +40,10 @@ const getData = async (path, num) => {
         const myMap = new Map();
 
         // make map 
-        asyncFunction(myMap, cryData, num);
+        createMap(myMap, cryData, num);
 
         // Check myMap
-        console.log(myMap);
+        // console.log(myMap);
 
         // delete everything in current table
         await Coins.destroy({
